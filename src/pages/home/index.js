@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
 
-const socket = io('http://localhost:6010');
+const socket = io('https://quick-chat-app-backend-ccid.onrender.com');
 function Home() {
     const { selectedChat, user } = useSelector(state => state.userReducer);
     const [onlineUsers, setOnlineUsers] = useState([]);
