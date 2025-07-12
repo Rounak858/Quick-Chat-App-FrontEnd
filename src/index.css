@@ -1,0 +1,28 @@
+:root {
+  --primary-color: #6c5ce7;
+  --secondary-color: #a29bfe;
+  --accent-color: #ffeaa7;
+  --danger-color: #d63031;
+  --light-bg: #f8f9fa;
+  --dark-text: #2d3436;
+  --light-text: #ffffff;
+  --border-color: #dfe6e9;
+  --highlight-color: #fd79a8;
+  --success-color: #00cec9;
+}
+
+.home-page {
+  background-color: #fdf6fd;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  display: flex;
+  width: 90%;
+  margin: 10px auto;
+  padding: 10px 10px;
+  flex: 1;
+  gap: 10px;
+}

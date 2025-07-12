@@ -1,0 +1,253 @@
+here sidebar.js && userList.js CSS 
+.app-sidebar {
+  width: 30%;
+  border-radius: 20px;
+  overflow-y: auto;
+  max-height: 100vh;
+}
+.user-search-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  border-bottom: 1px solid #bbb;
+  background-color: #fff;
+}
+
+.user-search-text {
+  flex: 1;
+  padding: 5px 10px;
+  border: 2px solid #080808;
+  border-radius: 10px;
+}
+
+.fa-search-btn {
+  font-size: 20px;
+  color: #333;
+  cursor: pointer;
+}
+
+/* --- User List --- */
+.filtered-user {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: #f8f8f8;
+  color: #28282b;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.2s ease;
+}
+.selected-user {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: var(--highlight-color);
+  color: white;
+  font-weight: 600;
+  border-bottom: 1px solid #ccc;
+  box-shadow: inset 4px 0 0 0 #c0392b;
+}
+
+.filtered-user:hover {
+  background-color: #f9f9f9;
+}
+
+.filter-user-display {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-user-details {
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.user-display-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-display-email {
+  font-size: 12px;
+  font-weight: bold;
+  color: #fdfcfc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.user-selected-display-email {
+  color: black;
+  font-size: 12px;
+}
+
+.user-default-profile-pic,
+.user-selected-avatar {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  border-radius: 50%;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.user-default-profile-pic {
+  background-color: var(--success-color);
+  color: white;
+}
+.user-selected-avatar {
+  background-color: white;
+  color: var(--highlight-color);
+}
+
+/* Chat Button */
+.user-start-chat {
+  margin-left: auto;
+}
+
+.user-start-chat-btn {
+  padding: 8px 12px;
+  border-radius: 8px;
+  background-color: #e74c3c;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.user-start-chat-btn:hover {
+  background-color: #c0392b;
+}
+.last-message-timestamp {
+  font-size: 13px;
+}
+.unread-message-counter {
+  text-align: center;
+  float: right;
+  font-size: 13px;
+  padding-top: 3px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #bbb;
+  font-weight: bold;
+  color: #080808;
+}
+.user-profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #e74c3c;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.user-avatar-container {
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+.online-indicator {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 10px;
+  height: 10px;
+  background-color: #4caf50;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+.user-online-text {
+  color: green;
+  font-size: 12px;
+  margin-left: 8px;
+  font-weight: 500;
+}
+@media only screen and (max-width: 768px) {
+  .app-sidebar {
+    width: 100%;
+    max-height: 200px; /* Prevent from taking full screen */
+    overflow-y: auto;
+    border-radius: 0;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .user-search-area {
+    display: none;
+  }
+
+  .filtered-user,
+  .selected-user {
+    padding: 10px 12px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .filter-user-display {
+    gap: 8px;
+  }
+
+  .filter-user-details {
+    display: none;
+  }
+
+  .user-display-name {
+    font-size: 14px;
+  }
+
+  .user-display-email,
+  .user-selected-display-email {
+    display: none;
+  }
+
+  .user-default-profile-pic,
+  .user-selected-avatar,
+  .user-profile-pic {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+
+  .user-start-chat-btn {
+    padding: 6px 10px;
+    font-size: 12px;
+    margin-top: 8px;
+  }
+
+  .unread-message-counter {
+    width: 20px;
+    height: 20px;
+    font-size: 11px;
+    padding-top: 2px;
+  }
+
+  .online-indicator {
+    width: 8px;
+    height: 8px;
+    border-width: 1.5px;
+  }
+
+  .user-online-text {
+    font-size: 10px;
+    margin-left: 4px;
+  }
+
+  .last-message-timestamp {
+    font-size: 11px;
+  }
+}
