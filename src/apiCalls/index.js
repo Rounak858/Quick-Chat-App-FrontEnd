@@ -5,6 +5,7 @@ export const url = "https://quick-chat-app-backend-ccid.onrender.com"
 
 // "proxy": "http://localhost:6010"
 export const axiosInstance = axios.create({
+    baseURL: url,
     headers: {
         authorization: `Bearer ${localStorage.getItem('token')}`
     }
