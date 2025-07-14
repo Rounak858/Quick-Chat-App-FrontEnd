@@ -22,7 +22,6 @@ function UserList({ searchKey, socket, onlineUsers }) {
                 const newChat = response.data;
                 const upDatedChat = [...allChats, newChat]
                 dispatch(seeAllChats(upDatedChat));
-                dispatch(setSelectedChat(newChat));
             }
         } catch (error) {
             toast.error(error?.response?.data?.message || error?.message || "Something went wrong");
@@ -89,16 +88,29 @@ function UserList({ searchKey, socket, onlineUsers }) {
         return fname + " " + lname;
     }
     function getData() {
-        if (searchKey === '') {
-            return allChats;
-        } else {
-            return AllUsers.filter(user => {
-                return (user.firstName.toLowerCase().includes(searchKey.toLowerCase()) ||
-                    user.lastName.toLowerCase().includes(searchKey.toLowerCase())
-                )
-            })
-        }
+    if (searchKey === '') {
+        // When there's no search, show unique chats by user
+        const seenUserIds = new Set();
+        const uniqueChats = [];
+        allChats.forEach(chat => {
+            const user = chat.members.find(m => m._id !== currentUser._id);
+            if (!seenUserIds.has(user._id)) {
+                seenUserIds.add(user._id);
+                uniqueChats.push(chat);
+            }
+        });
+        return uniqueChats;
+    } else {
+        // When there's a search, filter AllUsers list
+        return AllUsers.filter(user => {
+            return (
+                user.firstName.toLowerCase().includes(searchKey.toLowerCase()) ||
+                user.lastName.toLowerCase().includes(searchKey.toLowerCase())
+            );
+        });
     }
+}
+
     useEffect(() => {
         const handleReceivedMessage = (message) => {
             const selectedChat = store.getState().userReducer.selectedChat;

@@ -26,12 +26,12 @@ function ChatArea({ socket }) {
             chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
         }
     };
-    const getAllMessage = useCallback(async () => {
+    const getAllMessage = useCallback(async (withLoader = true) => {
         if (!selectedChat?._id) return;
         try {
-            dispatch(showLoader());
+            if (withLoader) dispatch(showLoader());
             const response = await getAllMessages(selectedChat._id);
-            dispatch(hideLoader());
+            if (withLoader) dispatch(hideLoader());
             if (response.success) {
                 setallMessage(response.data);
             } else {
@@ -60,7 +60,7 @@ function ChatArea({ socket }) {
             if (response.success) {
                 setMessage("");
                 setShowEmojiPicker(false);
-                getAllMessage();
+                // await getAllMessage(false); // ❌ don’t show loader after sending
             } else {
                 toast.error(response.message || "Message not sent");
             }
@@ -260,9 +260,11 @@ function ChatArea({ socket }) {
                             rows={1}
                             onChange={handleTyping}
                             onKeyDown={(e) => {
-                                if (e.key === "Enter" && message.trim() && !e.shiftKey) {
+                                if (e.key === "Enter" &&  !e.shiftKey) {
                                     e.preventDefault();
-                                    sendMessage();
+                                    if(message.trim()) {
+                                        sendMessage();
+                                    }
                                 }
                             }}
                         />
@@ -277,6 +279,7 @@ function ChatArea({ socket }) {
                             />
                         </label>
                         <button
+                        type="button"
                             className="fa fa-smile-o send-emoji-btn"
                             aria-hidden="true"
                             onClick={() => {
@@ -284,6 +287,7 @@ function ChatArea({ socket }) {
                             }}
                         ></button>
                         <button
+                        type="button"
                             className="fa fa-paper-plane send-message-btn"
                             aria-hidden="true"
                             onClick={() => sendMessage('')}
